@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+
+  database:
+    build:
+      dockerfile: extra/Dockerfile.database
+    image: webapp:database${suffix:-}
+    ports: ["27017"]
+
+  backend:
+    build:
+      dockerfile: extra/Dockerfile.backend
+    image: webapp:backend${suffix:-}
+    ports: ["8080"]
+    links: ["database"]
+
+  frontend:
+    build:
+      dockerfile: extra/Dockerfile.frontend
+    image: webapp:frontend${suffix:-}
+    ports: ["8000"]
+
+  test:
+    build:
+      dockerfile: extra/Dockerfile.test
+    image: webapp:test
+    links: ["frontend", "backend"]
