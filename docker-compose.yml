@@ -5,7 +5,7 @@ services:
   database:
     build:
       dockerfile: extra/Dockerfile.database
-    image: webapp:database
+    image: webapp:database${suffix:-}
     ports: ["27017"]
 
   backend:
