@@ -1,4 +1,4 @@
-.PHONY: build test
+.PHONY: build test pull minify
 
 minify:
     @docker-slim build --compose-file docker-compose.yml --container-probe-compose-svc test --target-compose-svc database --tag webapp:database-slim
