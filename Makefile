@@ -1,5 +1,8 @@
 .PHONY: build test
 
+pull:
+	@docker compose pull
+
 build:
 	@docker compose build
 
