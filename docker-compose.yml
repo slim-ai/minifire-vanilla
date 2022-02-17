@@ -28,5 +28,5 @@ services:
     build:
       network: host
       dockerfile: extra/Dockerfile.test
-    image: nathants/webapp-vanilla:test
+    image: nathants/webapp-vanilla:test${suffix:-}
     links: ["frontend", "backend"]
