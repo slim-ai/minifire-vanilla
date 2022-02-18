@@ -1,10 +1,10 @@
 .PHONY: build test pull minify run
 
 minify:
-	@docker-slim --state-path ~/.docker-slim build --compose-file docker-compose.yml --container-probe-compose-svc test --target-compose-svc database --tag nathants/webapp-vanilla:database-slim --include-new=false
-	@docker-slim --state-path ~/.docker-slim build --compose-file docker-compose.yml --container-probe-compose-svc test --target-compose-svc backend  --tag nathants/webapp-vanilla:backend-slim  --include-new=false
-	@docker-slim --state-path ~/.docker-slim build --compose-file docker-compose.yml --container-probe-compose-svc test --target-compose-svc frontend --tag nathants/webapp-vanilla:frontend-slim --include-new=false
-	@docker-slim --state-path ~/.docker-slim build --compose-file docker-compose.yml --container-probe-compose-svc test --target-compose-svc test     --tag nathants/webapp-vanilla:test-slim --include-new=false
+	@docker-slim --state-path ~/.docker-slim build --http-probe-off --compose-file docker-compose.yml --container-probe-compose-svc test --target-compose-svc database --tag nathants/webapp-vanilla:database-slim --include-new=false
+	@docker-slim --state-path ~/.docker-slim build --http-probe-off --compose-file docker-compose.yml --container-probe-compose-svc test --target-compose-svc backend  --tag nathants/webapp-vanilla:backend-slim  --include-new=false
+	@docker-slim --state-path ~/.docker-slim build --http-probe-off --compose-file docker-compose.yml --container-probe-compose-svc test --target-compose-svc frontend --tag nathants/webapp-vanilla:frontend-slim --include-new=false
+	@docker-slim --state-path ~/.docker-slim build --http-probe-off --compose-file docker-compose.yml --container-probe-compose-svc test --target-compose-svc test     --tag nathants/webapp-vanilla:test-slim --include-new=false
 	@docker compose rm -f
 	@SUFFIX="-slim" docker compose up --exit-code-from test
 
