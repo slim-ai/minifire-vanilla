@@ -4,25 +4,29 @@ services:
 
   database:
     build:
+      network: host
       dockerfile: Dockerfile.database
-    image: nathants/webapp-vanilla:database${suffix:-}
+    image: ${registry}/webapp-vanilla:database${suffix:-}
     ports: ["27017"]
 
   backend:
     build:
+      network: host
       dockerfile: Dockerfile.backend
-    image: nathants/webapp-vanilla:backend${suffix:-}
+    image: ${registry}/webapp-vanilla:backend${suffix:-}
     ports: ["8080"]
     links: ["database"]
 
   frontend:
     build:
+      network: host
       dockerfile: Dockerfile.frontend
-    image: nathants/webapp-vanilla:frontend${suffix:-}
+    image: ${registry}/webapp-vanilla:frontend${suffix:-}
     ports: ["8000"]
 
   test:
     build:
+      network: host
       dockerfile: Dockerfile.test
-    image: nathants/webapp-vanilla:test${suffix:-}
+    image: ${registry}/webapp-vanilla:test${suffix:-}
     links: ["frontend", "backend"]

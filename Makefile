@@ -11,6 +11,9 @@ minify:
 pull:
 	@docker compose pull
 
+push:
+	@docker compose push
+
 build:
 	@docker compose build
 
